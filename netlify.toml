@@ -1,0 +1,25 @@
+# Netlify config — statische Site, keine Build-Stufe nötig
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/anmeldeformular"
+  to = "/anmeldeformular.html"
+  status = 301
+
+[[redirects]]
+  from = "/impressum"
+  to = "/impressum.html"
+  status = 301
+
+[[redirects]]
+  from = "/datenschutz"
+  to = "/datenschutz.html"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
