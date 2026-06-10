@@ -130,6 +130,14 @@ h1, h2, h3, h4 {
 .nav__links a:hover::after { width: 100%; }
 .nav__cta { display: flex; gap: 12px; align-items: center; }
 .nav__cta .btn { padding: 10px 22px; font-size: 0.82rem; }
+.nav__socials { display: flex; gap: 8px; align-items: center; }
+.social-btn--sm { width: 38px; height: 38px; border-radius: 10px; }
+.social-btn--sm svg { width: 18px; height: 18px; }
+
+/* WhatsApp button */
+.btn--whatsapp { background: #25d366; color: #062e16; }
+.btn--whatsapp:hover { background: #1ebe5a; box-shadow: 0 12px 30px -12px rgba(37,211,102,0.6); }
+.btn--whatsapp svg { width: 18px; height: 18px; }
 .nav__burger {
   display: none; background: none; border: 0; cursor: pointer; padding: 8px;
   width: 44px; height: 44px; flex-direction: column; gap: 5px; justify-content: center; align-items: center;
@@ -164,13 +172,32 @@ h1, h2, h3, h4 {
     linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.82) 60%, var(--dark) 100%),
     url("https://www.grindhousemartialarts.de/wp-content/uploads/2024/10/Grindhouse-17-scaled.jpg") center 28% / cover no-repeat fixed;
 }
-.hero__inner { max-width: 760px; }
+.hero__grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; width: 100%; }
+.hero__inner { max-width: 680px; }
 .hero__brandmark { height: 86px; width: auto; margin-bottom: 26px; filter: drop-shadow(0 6px 20px rgba(0,0,0,0.5)); }
-.hero h1 { font-size: clamp(2.6rem, 7vw, 5rem); margin-bottom: 22px; }
+.hero h1 { font-size: clamp(2.4rem, 5.5vw, 4.4rem); margin-bottom: 22px; }
 .hero h1 .accent { color: var(--red); }
-.hero__lead { font-size: 1.15rem; color: var(--cream); margin-bottom: 14px; max-width: 620px; }
-.hero__sub { font-size: 1rem; color: var(--gray-300); margin-bottom: 34px; max-width: 600px; }
+.hero__lead { font-size: 1.12rem; color: var(--cream); margin-bottom: 14px; max-width: 620px; }
+.hero__sub { font-size: 0.98rem; color: var(--gray-300); margin-bottom: 30px; max-width: 600px; }
 .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* Google reviews — schlicht & dezent */
+.hero__reviews { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; padding: 8px 14px; border-radius: var(--pill); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
+.hero__reviews .stars { display: inline-flex; gap: 1px; }
+.hero__reviews-text { font-size: 0.85rem; color: var(--gray-300); }
+.hero__reviews-text strong { color: var(--white); }
+
+/* Hero course finder card */
+.hero__finder {
+  background: rgba(18,18,18,0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--gray-700); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow-card);
+}
+.hero__finder .eyebrow { margin-bottom: 6px; }
+.hero__finder h2 { font-size: 1.7rem; margin-bottom: 18px; }
+.hero__finder .filter-tabs { margin-bottom: 18px; gap: 8px; }
+.hero__finder .filter-tab { padding: 8px 16px; font-size: 0.78rem; }
+.hero__finder .course-list { grid-template-columns: 1fr; gap: 10px; }
+.hero__finder .course-pill { padding: 14px 16px; }
 .hero__scroll {
   position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 8px;
@@ -392,9 +419,16 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
 .prose a { color: var(--red); }
 .prose a:hover { text-decoration: underline; }
 
+/* drawer socials (mobile) */
+.drawer__socials { display: flex; gap: 14px; margin-top: 20px; }
+
 /* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 36px; }
+  .hero__finder { max-width: 560px; }
+}
 @media (max-width: 980px) {
-  .nav__links, .nav__cta .btn--ghost { display: none; }
+  .nav__links, .nav__cta .btn--ghost, .nav__socials, .nav__cta .btn--whatsapp { display: none; }
   .nav__burger { display: flex; }
   .split { grid-template-columns: 1fr; gap: 32px; }
   .split--rev .split__media { order: 0; }
@@ -404,6 +438,8 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
 }
 @media (max-width: 720px) {
   .section { padding: 72px 0; }
+  .hero { min-height: auto; padding: 110px 0 64px; }
+  .hero__finder { padding: 22px; }
   .offer-grid { grid-template-columns: 1fr; }
   .values { grid-template-columns: 1fr; }
   .ig-grid { grid-template-columns: 1fr 1fr; }
