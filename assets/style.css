@@ -289,10 +289,10 @@ p { text-wrap: pretty; }
 }
 .value-card:hover { transform: translateY(-6px); border-color: var(--red); box-shadow: var(--hairline), 0 20px 40px -20px rgba(0,0,0,0.7); }
 .value-card:hover .value-card__icon { background: var(--red); color: #fff; }
+.value-card__icon { transition: background 0.35s var(--ease), color 0.35s var(--ease); }
 .value-card__icon {
   width: 64px; height: 64px; margin: 0 auto 20px; border-radius: 50%;
   display: grid; place-items: center; background: rgba(150,19,24,0.12); color: var(--red);
-  transition: background 0.35s var(--ease), color 0.35s var(--ease);
 }
 .value-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
 .value-card p { color: var(--gray-300); font-size: 0.94rem; }
@@ -497,7 +497,63 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
 .review-card__name { font-weight: 600; color: var(--white); font-size: 0.9rem; }
 .review-card__src { color: var(--gray-500); font-size: 0.8rem; }
 
+/* ---------- DSGVO Consent banner ---------- */
+.consent {
+  position: fixed; z-index: 1000; left: 0; right: 0;
+  bottom: calc(0px + env(safe-area-inset-bottom, 0px));
+  padding: 16px; pointer-events: none;
+  transform: translateY(130%); transition: transform 0.5s var(--ease-expo);
+}
+.consent.open { transform: translateY(0); pointer-events: auto; }
+.consent__inner {
+  max-width: var(--maxw); margin: 0 auto;
+  background: rgba(18,18,18,0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--gray-700); border-radius: var(--radius);
+  box-shadow: 0 -12px 44px -14px rgba(0,0,0,0.75), var(--hairline);
+  padding: 22px 24px;
+  display: grid; grid-template-columns: 1.5fr 0.9fr; gap: 26px; align-items: center;
+}
+.consent__body h3 { font-size: 1.15rem; margin-bottom: 8px; }
+.consent__body > p { color: var(--gray-300); font-size: 0.9rem; margin-bottom: 16px; max-width: 62ch; }
+.consent__opts { display: flex; flex-wrap: wrap; gap: 12px 22px; }
+.consent__opt { display: flex; gap: 10px; align-items: flex-start; font-size: 0.85rem; cursor: pointer; }
+.consent__opt input { margin-top: 3px; width: auto; accent-color: var(--red); }
+.consent__opt span { display: flex; flex-direction: column; }
+.consent__opt strong { color: var(--white); font-weight: 600; }
+.consent__opt small { color: var(--gray-500); font-size: 0.75rem; }
+.consent__opt--fixed { opacity: 0.7; }
+.consent__actions { display: flex; flex-direction: column; gap: 10px; }
+.consent__actions .btn { width: 100%; justify-content: center; padding: 12px 20px; font-size: 0.82rem; }
+.consent__link { text-align: center; color: var(--gray-500); font-size: 0.8rem; margin-top: 2px; }
+.consent__link:hover { color: var(--gray-300); }
+
+/* ---------- Google Maps consent placeholder ---------- */
+.map-embed { position: relative; }
+.map-consent {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  gap: 12px; padding: 30px 24px; min-height: 220px;
+  background: linear-gradient(180deg, var(--gray-850), var(--gray-900)); color: var(--gray-300);
+}
+.map-consent svg { color: var(--red); }
+.map-consent__title { font-family: var(--font-display); font-style: italic; text-transform: uppercase; color: var(--white); letter-spacing: 0.04em; }
+.map-consent__note { font-size: 0.86rem; color: var(--gray-300); max-width: 46ch; }
+.map-consent__note a { color: var(--red); }
+.map-consent__note a:hover { text-decoration: underline; }
+.map-consent__btn { margin-top: 4px; }
+.map-consent__remember { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--gray-500); cursor: pointer; }
+.map-consent__remember input { width: auto; accent-color: var(--red); }
+
+/* ---------- Form DSGVO consent row ---------- */
+.form-group--consent { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px; }
+.form-group--consent input { margin-top: 4px; width: auto; flex: 0 0 auto; accent-color: var(--red); }
+.form-group--consent label { margin: 0; font-weight: 400; color: var(--gray-300); font-size: 0.88rem; }
+.form-group--consent a { color: var(--red); }
+.form-group--consent a:hover { text-decoration: underline; }
+
 /* ---------- Responsive ---------- */
+@media (max-width: 780px) {
+  .consent__inner { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
+}
 @media (max-width: 1100px) {
   .hero__grid { grid-template-columns: 1fr; gap: 36px; }
   .hero__finder { max-width: 560px; }
