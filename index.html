@@ -10,9 +10,7 @@
   <meta property="og:image" content="https://www.grindhousemartialarts.de/wp-content/uploads/2023/02/Logo-Website.png" />
   <meta property="og:type" content="website" />
   <link rel="icon" href="https://www.grindhousemartialarts.de/wp-content/uploads/2023/02/cropped-Logo-Website-270x270.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Google Fonts werden aus Datenschutzgründen (DSGVO) erst nach Einwilligung geladen (siehe assets/consent.js). Ohne Einwilligung greift der Fallback im CSS. -->
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
@@ -386,8 +384,14 @@
             <span class="info-row__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
             <div><h4>E-Mail</h4><p><a href="mailto:info@grindhousemartialarts.de">info@grindhousemartialarts.de</a></p></div>
           </div>
-          <div class="map-embed">
-            <iframe title="Standort Grindhouse Martial Arts" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2480.174745683571!2d6.7733359517434995!3d51.565029979544754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8947c507be061%3A0x63f3dea4be267e2c!2sKirchstra%C3%9Fe%20108%2C%2046539%20Dinslaken!5e0!3m2!1sde!2sde!4v1643293712251!5m2!1sde!2sde"></iframe>
+          <div class="map-embed" data-map data-title="Standort Grindhouse Martial Arts" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2480.174745683571!2d6.7733359517434995!3d51.565029979544754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8947c507be061%3A0x63f3dea4be267e2c!2sKirchstra%C3%9Fe%20108%2C%2046539%20Dinslaken!5e0!3m2!1sde!2sde!4v1643293712251!5m2!1sde!2sde">
+            <div class="map-consent">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <p class="map-consent__title">Standortkarte (Google Maps)</p>
+              <p class="map-consent__note">Zum Schutz deiner Daten laden wir die Karte erst nach deiner Zustimmung. Dabei wird deine IP-Adresse an Google übertragen. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+              <button type="button" class="btn btn--primary map-consent__btn">Karte laden</button>
+              <label class="map-consent__remember"><input type="checkbox" class="map-remember" /> Google Maps künftig immer erlauben</label>
+            </div>
           </div>
         </div>
         <form class="form-card" data-stub data-success="Vielen Dank! Wir melden uns schnellstmöglich für deinen Kennenlerntermin." novalidate>
@@ -420,6 +424,10 @@
               <option>Kinder ab 12 Jahren</option>
               <option>Erwachsene</option>
             </select>
+          </div>
+          <div class="form-group form-group--consent">
+            <input type="checkbox" id="dsgvo-kontakt" name="dsgvo" required />
+            <label for="dsgvo-kontakt">Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu. <span class="req">*</span></label>
           </div>
           <button class="btn btn--primary btn--block" type="submit">Jetzt Termin anfragen</button>
           <div class="form-msg" role="alert" aria-live="polite"></div>
@@ -480,11 +488,12 @@
       </div>
       <div class="footer__bottom">
         <span>&copy; <span data-year>2026</span> Grindhouse Martial Arts · Glory Sports GmbH &amp; Co. KG</span>
-        <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
+        <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="#" data-consent-open>Cookie-Einstellungen</a></span>
       </div>
     </div>
   </footer>
 
+  <script src="assets/consent.js" defer></script>
   <script src="assets/app.js" defer></script>
   <script src="assets/instagram-feed.js" defer></script>
 </body>
