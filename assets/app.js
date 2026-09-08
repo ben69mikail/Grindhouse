@@ -18,6 +18,26 @@
     onScroll();
   }
 
+  /* ---- Scroll progress bar (index only: needs a long page) ---- */
+  if (document.querySelector(".hero")) {
+    var bar = document.createElement("div");
+    bar.className = "scroll-progress";
+    bar.setAttribute("aria-hidden", "true");
+    document.body.appendChild(bar);
+    var ticking = false;
+    var updateBar = function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+      bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
+      ticking = false;
+    };
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(updateBar); }
+    }, { passive: true });
+    window.addEventListener("resize", updateBar);
+    updateBar();
+  }
+
   /* ---- Mobile drawer ---- */
   var burger = document.querySelector(".nav__burger");
   var drawer = document.querySelector(".drawer");
