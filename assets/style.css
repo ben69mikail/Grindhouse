@@ -6,9 +6,9 @@
 :root {
   --red: #961318;
   --red-hover: #7a0f14;
-  --red-bright: #b9181f;        /* button surface: lifts off the near-black page */
-  --red-bright-hover: #d11d25;
-  --red-glow: rgba(185, 24, 31, 0.55);
+  --red-bright: #c9181f;        /* button surface: white text 5.8:1, lifts 3.4:1 off the near-black page */
+  --red-bright-hover: #e11f27;
+  --red-glow: rgba(201, 24, 31, 0.6);
   --green: #77bc40;
   --dark: #0a0a0a;
   --gray-900: #121212;
@@ -123,22 +123,22 @@ p { text-wrap: pretty; }
 /* Primary: brighter bordeaux, lit top edge, deeper glow — reads as a button on #0a0a0a */
 .btn--primary {
   background: var(--red-bright); color: var(--white);
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.24);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
-    0 1px 2px rgba(0, 0, 0, 0.5),
-    0 12px 32px -10px var(--red-glow);
-}
-.btn--primary:hover {
-  background: var(--red-bright-hover); border-color: rgba(255, 255, 255, 0.26);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.34),
     inset 0 -1px 0 rgba(0, 0, 0, 0.25),
     0 1px 2px rgba(0, 0, 0, 0.5),
+    0 14px 36px -10px var(--red-glow);
+}
+.btn--primary:hover {
+  background: var(--red-bright-hover); border-color: rgba(255, 255, 255, 0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.5),
     0 22px 48px -12px var(--red-glow),
-    0 0 0 4px rgba(185, 24, 31, 0.22);
+    0 0 0 4px rgba(201, 24, 31, 0.24);
 }
 /* light sweep across the primary button on hover */
 .btn--primary::after {
@@ -147,12 +147,13 @@ p { text-wrap: pretty; }
   transform: translateX(-120%); transition: transform 0.6s var(--ease-expo);
 }
 .btn--primary:hover::after { transform: translateX(120%); }
+.btn[disabled] { opacity: 0.7; cursor: progress; transform: none; }
 
 /* Ghost: visible frame + faint fill at rest, inverts to solid white on hover */
 .btn--ghost {
-  background: rgba(255, 255, 255, 0.07); color: var(--white);
-  border-color: rgba(255, 255, 255, 0.72);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.1); color: var(--white);
+  border-color: rgba(255, 255, 255, 0.88);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 .btn--ghost:hover { background: var(--white); color: var(--dark); border-color: var(--white); box-shadow: 0 16px 36px -14px rgba(255, 255, 255, 0.45); }
 .btn--block { width: 100%; justify-content: center; }
@@ -217,16 +218,30 @@ p { text-wrap: pretty; }
 }
 .drawer a:hover { color: var(--red); }
 .drawer .btn { margin-top: 16px; }
+.drawer > a, .drawer > .drawer__socials { opacity: 0; transform: translateY(14px); transition: opacity 0.3s var(--ease), transform 0.4s var(--ease-expo); }
+.drawer.open > a, .drawer.open > .drawer__socials { opacity: 1; transform: none; }
+.drawer.open > :nth-child(1) { transition-delay: 0.1s; } .drawer.open > :nth-child(2) { transition-delay: 0.15s; }
+.drawer.open > :nth-child(3) { transition-delay: 0.2s; } .drawer.open > :nth-child(4) { transition-delay: 0.25s; }
+.drawer.open > :nth-child(5) { transition-delay: 0.3s; } .drawer.open > :nth-child(6) { transition-delay: 0.35s; }
+.drawer.open > :nth-child(7) { transition-delay: 0.4s; }
 
 /* ---------- Hero ---------- */
 .hero {
   position: relative; min-height: 100vh; min-height: 100dvh;
-  display: flex; align-items: center; overflow: hidden;
+  display: flex; align-items: center; overflow: hidden; isolation: isolate;
   padding: 120px 0 80px;
+  background: var(--dark);
+}
+/* photo layer: slow push-in on load (Ken Burns); scroll drift lives in the @supports block below */
+.hero::after {
+  content: ""; position: absolute; inset: -12% 0; z-index: -1;
   background:
     linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.82) 60%, var(--dark) 100%),
-    url("https://www.grindhousemartialarts.de/wp-content/uploads/2024/10/Grindhouse-17-scaled.jpg") center 28% / cover no-repeat fixed;
+    url("https://www.grindhousemartialarts.de/wp-content/uploads/2024/10/Grindhouse-17-scaled.jpg") center 28% / cover no-repeat;
+  transform-origin: center 30%;
+  animation: hero-zoom 18s var(--ease) both;
 }
+@keyframes hero-zoom { from { scale: 1.12; } to { scale: 1; } }
 /* warm brand glow anchoring the hero copy */
 .hero::before {
   content: ""; position: absolute; z-index: 0;
@@ -339,10 +354,11 @@ p { text-wrap: pretty; }
 .filter-tab {
   font-family: var(--font-display); font-style: italic; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.06em; font-size: 0.86rem; padding: 11px 24px; border-radius: var(--pill);
-  background: var(--gray-800); color: var(--gray-300); border: 1px solid var(--gray-700); cursor: pointer;
-  transition: 0.25s var(--ease);
+  background: var(--gray-800); color: var(--ink-2); border: 1px solid rgba(255, 255, 255, 0.16); cursor: pointer;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease), background 0.25s var(--ease), transform 0.18s var(--ease-expo);
 }
 .filter-tab:hover { color: var(--white); border-color: var(--gray-300); background: var(--gray-700); }
+.filter-tab:active { transform: scale(0.96); }
 .filter-tab:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
 .filter-tab.active {
   background: var(--red-bright); color: #fff; border-color: rgba(255,255,255,0.22);
@@ -374,7 +390,8 @@ table.plan th {
   font-family: var(--font-display); font-style: italic; text-transform: uppercase; letter-spacing: 0.06em;
   font-size: 0.9rem; background: var(--red); color: #fff; position: sticky; top: 0;
 }
-table.plan td { font-size: 0.88rem; color: var(--gray-300); border-right: 1px solid var(--gray-800); }
+table.plan td { font-size: 0.88rem; color: var(--gray-300); border-right: 1px solid var(--gray-800); transition: background 0.2s var(--ease); }
+table.plan tbody tr:hover td { background: rgba(255, 255, 255, 0.03); }
 table.plan td:last-child { border-right: 0; }
 table.plan .slot { display: block; }
 table.plan .slot strong { color: var(--white); font-weight: 600; display: block; }
@@ -409,6 +426,8 @@ table.plan .slot small { color: var(--gray-500); }
   position: relative; aspect-ratio: 1 / 1; border-radius: var(--radius); overflow: hidden;
   background: var(--gray-850); border: 1px solid var(--gray-700); display: block;
 }
+.ig-card { animation: rise 0.6s var(--ease-expo) both; animation-delay: calc(var(--i, 0) * 80ms); }
+.ig-card:nth-child(2) { --i: 1; } .ig-card:nth-child(3) { --i: 2; }
 .ig-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
 .ig-card:hover img { transform: scale(1.07); }
 .ig-card__overlay {
@@ -492,14 +511,26 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
 /* gentle stagger when several reveals sit in one row/grid */
 .offer-grid .reveal:nth-child(2), .values .reveal:nth-child(2), .reviews-grid .reveal:nth-child(2) { transition-delay: 0.1s; }
 .values .reveal:nth-child(3), .reviews-grid .reveal:nth-child(3) { transition-delay: 0.2s; }
-/* split sections: media and copy arrive from opposite sides */
+/* offer cards: photo settles from a push-in as the card reveals */
+.offer-card.reveal .offer-card__img { transform: scale(1.12); }
+.offer-card.reveal.in .offer-card__img { transform: scale(1); transition: transform 1.3s var(--ease-expo); }
+.offer-card.reveal.in:hover .offer-card__img { transform: scale(1.06); transition-duration: 0.7s; }
+/* value cards: icon pops in after its card */
+.value-card.reveal .value-card__icon { opacity: 0; transform: scale(0.6); }
+.value-card.reveal.in .value-card__icon {
+  opacity: 1; transform: none;
+  transition: opacity 0.5s var(--ease) 0.25s, transform 0.7s var(--ease-expo) 0.25s, background 0.35s var(--ease), color 0.35s var(--ease);
+}
+/* split sections: media wipes in, copy slides from the other side */
 .split.reveal { transform: none; filter: none; opacity: 1; transition: none; }
-.split.reveal .split__media, .split.reveal .split__body { opacity: 0; transition: opacity 0.9s var(--ease-expo), transform 0.9s var(--ease-expo); }
-.split.reveal .split__media { transform: translateX(-32px); }
-.split.reveal .split__body { transform: translateX(32px); transition-delay: 0.12s; }
-.split--rev.reveal .split__media { transform: translateX(32px); }
+.split.reveal .split__body { opacity: 0; transform: translateX(32px); transition: opacity 0.9s var(--ease-expo) 0.12s, transform 0.9s var(--ease-expo) 0.12s; }
 .split--rev.reveal .split__body { transform: translateX(-32px); }
-.split.reveal.in .split__media, .split.reveal.in .split__body { opacity: 1; transform: translateX(0); }
+.split.reveal .split__media { clip-path: inset(0 100% 0 0 round var(--radius)); transition: clip-path 1.1s var(--ease-expo); }
+.split--rev.reveal .split__media { clip-path: inset(0 0 0 100% round var(--radius)); }
+.split.reveal .split__media img { transform: scale(1.1); transition: transform 1.5s var(--ease-expo); }
+.split.reveal.in .split__body { opacity: 1; transform: translateX(0); }
+.split.reveal.in .split__media { clip-path: inset(0 0 0 0 round var(--radius)); }
+.split.reveal.in .split__media img { transform: none; }
 /* training plan rows cascade in */
 .plan-wrap.reveal table.plan tbody tr { opacity: 0; transform: translateY(8px); transition: opacity 0.6s var(--ease-expo), transform 0.6s var(--ease-expo); }
 .plan-wrap.reveal.in table.plan tbody tr { opacity: 1; transform: none; }
@@ -525,6 +556,19 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
 @keyframes hero-fade { from { opacity: 0; } to { opacity: 1; } }
 .hero__scroll { animation: hero-fade 0.8s var(--ease-expo) 1.2s both; }
 .hero::before { animation: hero-glow 9s ease-in-out infinite; }
+
+/* scroll-driven (progressive enhancement): photo drifts slower than the page, hero copy lifts away on desktop */
+@supports (animation-timeline: scroll()) {
+  @keyframes hero-drift { to { translate: 0 10%; } }
+  @keyframes hero-out { to { opacity: 0; translate: 0 -48px; } }
+  .hero::after {
+    animation: hero-zoom 18s var(--ease) both, hero-drift linear both;
+    animation-timeline: auto, scroll(root); animation-range: normal, 0 100vh;
+  }
+  @media (min-width: 1101px) {
+    .hero__grid { animation: hero-out linear both; animation-timeline: scroll(root); animation-range: 0 75vh; }
+  }
+}
 
 /* ---------- Scroll progress (under the navbar) ---------- */
 .scroll-progress {
@@ -669,15 +713,17 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
   .ig-grid { grid-template-columns: 1fr 1fr; }
   .partner-grid { grid-template-columns: repeat(2, 1fr); }
   .footer__top { grid-template-columns: 1fr; }
-  .hero { background-attachment: scroll; }
   table.plan { display: none; }
   .plan-wrap { border: 0; overflow: visible; }
   .plan-accordion { display: block; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto; }
-  .reveal, .split.reveal .split__media, .split.reveal .split__body,
-  .plan-wrap.reveal table.plan tbody tr { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .reveal, .split.reveal .split__media, .split.reveal .split__body, .split.reveal .split__media img,
+  .offer-card.reveal .offer-card__img, .value-card.reveal .value-card__icon,
+  .drawer > a, .drawer > .drawer__socials,
+  .plan-wrap.reveal table.plan tbody tr { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
+  .hero::after, .hero__grid { scale: 1; translate: none; opacity: 1; }
   .partner-grid.reveal img { opacity: 0.62; transform: none; }
   .section__head h2::after { transform: scaleX(1); }
   .scroll-progress { display: none; }

@@ -37,15 +37,16 @@ Alle HTML-Seiten laden `assets/style.css` + `assets/app.js` (defer) + `assets/co
 ## Design-Tokens (`:root` in style.css)
 ```
 --red: #961318          Brand (Text, Akzente, Tabellenkopf)
---red-bright: #b9181f   Button-Fläche (hebt sich von #0a0a0a ab)
---red-bright-hover: #d11d25
---red-glow: rgba(185,24,31,.55)
+--red-bright: #c9181f   Button-Fläche (Weiß 5,8:1, hebt sich 3,4:1 von #0a0a0a ab)
+--red-bright-hover: #e11f27
+--red-glow: rgba(201,24,31,.6)
 --dark: #0a0a0a  --gray-900 … --gray-300  --cream: #faf6f0
 --ease: cubic-bezier(.22,1,.36,1)  --ease-expo: cubic-bezier(.16,1,.3,1)
 --radius: 14px  --pill: 100px  --maxw: 1200px
 ```
 Buttons: `.btn .btn--primary` (rot, Kantenlicht, Hover-Sheen), `.btn--ghost` (Rahmen, invertiert auf Hover), `.btn--whatsapp`, `.btn--block`.
 Reveal: Element bekommt Klasse `reveal`, JS setzt `in` beim Sichtbarwerden. Stagger via `nth-child`-Delays.
+Motion-Bausteine: Hero-Foto liegt auf `.hero::after` (Ken-Burns `hero-zoom` 18s; im `@supports (animation-timeline)`-Block zusätzlich Scroll-Drift + `hero-out` für `.hero__grid` ab 1101px). Split-Bilder wischen per `clip-path` ein, Offer-Card-Fotos setzen sich aus scale(1.12), Value-Icons poppen nach der Karte, Drawer-Links kaskadieren, IG-Cards `rise`. Alles im Reduced-Motion-Block zurückgesetzt.
 
 ## DSGVO / Consent
 - localStorage-Key `gh-consent-v1` = `{ necessary:true, fonts:bool, maps:bool, ts }`
@@ -60,7 +61,7 @@ Weitere: Fr 15:45–16:45 Mini Turnen (ab 1,5) · Di & Do 16:15–17:15 FitKids 
 Kursfinder-Gruppen: Kinder ab 5 / ab 8 / ab 12 / Erwachsene. Änderungen an BEIDEN Stellen (Tabelle + `.plan-accordion`) pflegen.
 
 ## Status (2026-09-09)
-Erledigt: Klon, GitHub+Netlify, Zirkel Training, Kursfinder im Hero, Google-Reviews (nur >4 Sterne), WhatsApp-FAB nur mobil, FB+IG Buttons, DSGVO-Pass, Design-Pass Button-Kontrast + Motion (Commit `b83d817`).
+Erledigt: Klon, GitHub+Netlify, Zirkel Training, Kursfinder im Hero, Google-Reviews (nur >4 Sterne), WhatsApp-FAB nur mobil, FB+IG Buttons, DSGVO-Pass, Design-Pass Button-Kontrast + Motion (Commit `b83d817`), zweiter Design-Pass 2026-09-09: hellere Button-Fläche, Ghost-Rahmen, Hero-Ken-Burns + Scroll-Drift, Clip-Path-Wipes, Icon-/Drawer-/IG-Stagger.
 
 ## Offen / Ideen
 1. **Formulare haben kein Backend** — `data-stub` in `index.html` + `anmeldeformular.html`. Option: Netlify Forms (`data-netlify="true"`, `name`-Attribut, Honeypot vorhanden `.hp`) → E-Mail-Benachrichtigung im Netlify-Dashboard. Stub-Handler in `app.js` dann entfernen.
