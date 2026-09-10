@@ -375,18 +375,20 @@ p { text-wrap: pretty; }
 /* ---------- Course filter ---------- */
 .filter-tabs { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 36px; }
 .filter-tab {
-  position: relative; overflow: hidden;
+  position: relative; overflow: hidden; isolation: isolate;
   font-family: var(--font-display); font-style: italic; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.06em; font-size: 0.86rem; padding: 11px 24px; border-radius: var(--pill);
   background: var(--gray-800); color: var(--ink-2); border: 1px solid rgba(255, 255, 255, 0.16); cursor: pointer;
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease), background 0.25s var(--ease), transform 0.18s var(--ease-expo);
 }
-/* idle hint: a thin red light beam sweeps the bottom edge of every tab that is NOT selected.
-   Tabs take turns (delay = index * quarter cycle), so only one beam moves at a time. */
+/* idle hint: a slanted light bar with a bright core sweeps every tab that is NOT selected, full height,
+   behind the label (z-index -1 inside the tab's own stacking context).
+   Tabs take turns (delay = index * quarter cycle), so only one bar moves at a time. */
 .filter-tab::before {
-  content: ""; position: absolute; left: 0; bottom: 0; width: 50%; height: 1px; opacity: 0;
-  background: linear-gradient(90deg, transparent, var(--red-bright-hover) 50%, transparent);
-  box-shadow: 0 0 8px 1px var(--red-glow);
+  content: ""; position: absolute; top: -20%; bottom: -20%; left: 0; width: 42%; z-index: -1; opacity: 0;
+  background: linear-gradient(100deg,
+    transparent 0%, rgba(225, 31, 39, 0.35) 30%, rgba(255, 210, 212, 0.75) 50%, rgba(225, 31, 39, 0.35) 70%, transparent 100%);
+  box-shadow: 0 0 18px 4px rgba(225, 31, 39, 0.35);
   transform: translateX(-100%);
   animation: tab-beam 4.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   pointer-events: none;
@@ -399,8 +401,8 @@ p { text-wrap: pretty; }
   0%   { transform: translateX(-100%); opacity: 0; }
   6%   { opacity: 1; }
   44%  { opacity: 1; }
-  50%  { transform: translateX(200%); opacity: 0; }
-  100% { transform: translateX(200%); opacity: 0; }
+  50%  { transform: translateX(340%); opacity: 0; }
+  100% { transform: translateX(340%); opacity: 0; }
 }
 .filter-tab:hover { color: var(--white); border-color: var(--gray-300); background: var(--gray-700); }
 .filter-tab:active { transform: scale(0.96); }
