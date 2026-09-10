@@ -351,13 +351,13 @@ p { text-wrap: pretty; }
 .values-section::before {
   content: ""; position: absolute; inset: -12% 0; z-index: -1;
   background:
-    linear-gradient(180deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.72) 45%, rgba(10,10,10,0.94) 100%),
+    linear-gradient(180deg, rgba(10,10,10,0.86) 0%, rgba(10,10,10,0.58) 45%, rgba(10,10,10,0.9) 100%),
     url("img/werte-bg-1920.webp") center 40% / cover no-repeat;
 }
 .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .value-card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 40%), rgba(14, 14, 14, 0.82);
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 40%), rgba(14, 14, 14, 0.55);
+  backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius); box-shadow: var(--hairline);
   padding: 36px 30px; text-align: center;
   transition: transform 0.35s var(--ease-expo), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
@@ -765,7 +765,8 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
   .subnav .filter-tabs--sub { justify-content: center; }
   .values { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .values-section::before { background-image: linear-gradient(180deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.72) 45%, rgba(10,10,10,0.94) 100%), url("img/werte-bg-1080.webp"); }
+  /* mobile: the athlete stands in the left fifth of the photo, keep her in frame */
+  .values-section::before { background-image: linear-gradient(180deg, rgba(10,10,10,0.86) 0%, rgba(10,10,10,0.58) 45%, rgba(10,10,10,0.9) 100%), url("img/werte-bg-1080.webp"); background-position: 18% 45%; }
   .footer__top { grid-template-columns: 1fr; }
   table.plan { display: none; }
   .plan-wrap { border: 0; overflow: visible; }
