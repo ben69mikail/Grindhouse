@@ -79,6 +79,21 @@
     });
   });
 
+  /* ---- Training plan: mark today's column / open today's accordion (Mon-Fri only) ---- */
+  var today = (new Date().getDay() + 6) % 7; // Mon = 0 … Sun = 6
+  if (today < 5) {
+    document.querySelectorAll("table.plan tr").forEach(function (tr) {
+      var cell = tr.children[today];
+      if (cell) cell.classList.add("today");
+    });
+    var days = document.querySelectorAll(".plan-day");
+    if (days[today]) {
+      days.forEach(function (d) { d.removeAttribute("open"); });
+      days[today].setAttribute("open", "");
+      days[today].classList.add("today");
+    }
+  }
+
   /* ---- Reveal on scroll ---- */
   var reveals = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && reveals.length) {

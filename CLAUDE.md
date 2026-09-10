@@ -13,23 +13,23 @@ Reines HTML/CSS/JS. Kein Build, kein Framework, kein npm.
 ## Dateien
 | Datei | Zweck |
 |---|---|
-| `index.html` | Startseite: Nav, Hero + Kursfinder, Angebot, Reviews, Über uns, Werte, Trainingsplan (Tabelle + Mobile-Accordion), Instagram, Kontakt + Formular, Partner, Footer |
+| `index.html` | Startseite: Nav, Hero + Kursfinder, Angebot, Reviews, Über uns, Werte (Foto-Hintergrund), Trainingsplan (Tabelle + Mobile-Accordion, Heute-Markierung), Fotogalerie 3×2, Kontakt + Formular, Footer |
 | `anmeldeformular.html` | Online-Anmeldung mit DSGVO-Checkbox → Redirect `bestaetigung.html` |
 | `bestaetigung.html` | Erfolgsseite |
 | `impressum.html`, `datenschutz.html` | Rechtstexte, echte Firmendaten |
 | `assets/style.css` | Design-System + alle Komponenten (~680 Zeilen) |
 | `assets/app.js` | Nav-Scroll, Scroll-Progress-Bar, Mobile-Drawer, Kursfilter-Tabs, Reveal (IntersectionObserver), Formular-Stub, Footer-Jahr |
 | `assets/consent.js` | DSGVO-Consent-Banner |
-| `assets/instagram-feed.js` | IG-Feed, 3 Posts; ohne Token Mock-Feed |
+| `assets/img/` | Optimierte WebP-Fotos: `galerie-01..06` (900×900), `werte-bg-1920/1080`. Originale in `Fotos/` (gitignored, ~300 MB). Neue Fotos: PIL-Resize auf diese Maße, nie Originale committen |
 | `netlify.toml` | `publish = "."`, Redirects `/impressum` etc., Security-Header |
 
-Alle HTML-Seiten laden `assets/style.css` + `assets/app.js` (defer) + `assets/consent.js`.
+Alle HTML-Seiten laden `assets/style.css` + `assets/app.js` (defer) + `assets/consent.js`. Kein Instagram-Feed mehr (Galerie statt Feed), keine Partner-Sektion mehr.
 
 ## Harte Regeln
 - **Krav Maga NIE erwähnen** (Kurse, Partner, Texte). User-Vorgabe.
 - Design-System beibehalten: Bordeaux, Oswald kursiv (Display), Open Sans (Body), Dark Theme. Keine neuen Fonts/Farben ohne Anweisung.
 - Nur Homepage weiterführen. Keine Member-App, kein Next.js (alter Ansatz verworfen).
-- Bilder/Logo bleiben Original-URLs von grindhousemartialarts.de (kein lokaler Asset-Ordner).
+- Logo + ältere Fotos bleiben Original-URLs von grindhousemartialarts.de; neue Fotos aus `Fotos/` optimiert nach `assets/img/`.
 - Deutsch, Du-Ansprache, Texte kurz.
 - Jede Animation braucht `prefers-reduced-motion`-Fallback (Block am Ende von style.css).
 - Vor Push lokal prüfen: `index.html` im Browser öffnen, Desktop + Mobile (390px).
@@ -46,7 +46,7 @@ Alle HTML-Seiten laden `assets/style.css` + `assets/app.js` (defer) + `assets/co
 ```
 Buttons: `.btn .btn--primary` (rot, Kantenlicht, Hover-Sheen), `.btn--ghost` (Rahmen, invertiert auf Hover), `.btn--whatsapp`, `.btn--block`.
 Reveal: Element bekommt Klasse `reveal`, JS setzt `in` beim Sichtbarwerden. Stagger via `nth-child`-Delays.
-Motion-Bausteine: Hero-Foto liegt auf `.hero::after` (Ken-Burns `hero-zoom` 18s; im `@supports (animation-timeline)`-Block zusätzlich Scroll-Drift + `hero-out` für `.hero__grid` ab 1101px). Split-Bilder wischen per `clip-path` ein, Offer-Card-Fotos setzen sich aus scale(1.12), Value-Icons poppen nach der Karte, Drawer-Links kaskadieren, IG-Cards `rise`. Kursfinder-Tabs: inaktive Tabs tragen einen 1px-Lichtstrahl (`.filter-tab::before`, `tab-beam` 4,2s, per `nth-child` versetzt), Klick setzt `pop` (`tab-pop`, app.js entfernt bei `animationend`). Alles im Reduced-Motion-Block zurückgesetzt.
+Motion-Bausteine: Hero-Foto liegt auf `.hero::after` (Ken-Burns `hero-zoom` 18s; im `@supports (animation-timeline)`-Block zusätzlich Scroll-Drift + `hero-out` für `.hero__grid` ab 1101px). Split-Bilder wischen per `clip-path` ein, Offer-Card-Fotos setzen sich aus scale(1.12), Value-Icons poppen nach der Karte, Drawer-Links kaskadieren, IG-Cards `rise`. Werte-Sektion: Foto auf `.values-section::before` (Scroll-Drift via `view()`-Timeline). Trainingsplan: Cream-Slot-Kacheln, `td.today`/`th.today`/`.plan-day.today` setzt app.js (Mo–Fr), Heute-Badge + Ring blenden nach dem Row-Cascade ein. Galerie: `.gallery__item` kaskadieren. Kursfinder-Tabs: inaktive Tabs tragen einen 1px-Lichtstrahl (`.filter-tab::before`, `tab-beam` 4,2s, per `nth-child` versetzt), Klick setzt `pop` (`tab-pop`, app.js entfernt bei `animationend`). Alles im Reduced-Motion-Block zurückgesetzt.
 
 ## DSGVO / Consent
 - localStorage-Key `gh-consent-v1` = `{ necessary:true, fonts:bool, maps:bool, ts }`
@@ -65,7 +65,6 @@ Erledigt: Klon, GitHub+Netlify, Zirkel Training, Kursfinder im Hero, Google-Revi
 
 ## Offen / Ideen
 1. **Formulare haben kein Backend** — `data-stub` in `index.html` + `anmeldeformular.html`. Option: Netlify Forms (`data-netlify="true"`, `name`-Attribut, Honeypot vorhanden `.hp`) → E-Mail-Benachrichtigung im Netlify-Dashboard. Stub-Handler in `app.js` dann entfernen.
-2. **Instagram-Feed live**: Meta-App, Long-Lived Token in `IG_CONFIG.token` (`assets/instagram-feed.js`); Token für Produktion serverseitig proxen (Netlify Function).
 3. Echte Google-Reviews-Anbindung (aktuell statisch, 3 Zitate).
 4. SEO: `sitemap.xml`, `robots.txt`, Open-Graph-Bilder, JSON-LD `SportsActivityLocation` prüfen.
 5. Bilder lokal hosten + WebP (aktuell Hotlinks auf WordPress-Uploads des Originals).
