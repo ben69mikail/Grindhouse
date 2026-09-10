@@ -138,17 +138,20 @@
       </div>
       <div class="sport reveal">
         <div class="filter-tabs sport__tabs" role="tablist" aria-label="Sportarten">
-          <button class="filter-tab active" data-target="s-kick" role="tab" aria-selected="true">Kickboxen</button>
+          <button class="filter-tab active" data-target="s-kick" role="tab" aria-selected="true">Kickboxen <span class="filter-tab__count" aria-label="4 Gruppen">4</span></button>
           <button class="filter-tab" data-target="s-fitkids" role="tab" aria-selected="false">FitKids</button>
           <button class="filter-tab" data-target="s-mini" role="tab" aria-selected="false">Mini Turnen</button>
           <button class="filter-tab" data-target="s-zirkel" role="tab" aria-selected="false">Zirkeltraining</button>
         </div>
-        <div class="filter-panel active" id="s-kick">
-          <div class="filter-tabs filter-tabs--sub" role="tablist" aria-label="Kickboxen-Gruppen">
+        <div class="filter-panel active filter-panel--kick" id="s-kick">
+          <div class="subnav">
+            <span class="subnav__label">Kickboxen für</span>
+            <div class="filter-tabs filter-tabs--sub" role="tablist" aria-label="Kickboxen-Gruppen">
             <button class="filter-tab active" data-target="s-kick-kids" role="tab" aria-selected="true">Kids</button>
             <button class="filter-tab" data-target="s-kick-teens" role="tab" aria-selected="false">Teens</button>
             <button class="filter-tab" data-target="s-kick-frauen" role="tab" aria-selected="false">Frauen</button>
             <button class="filter-tab" data-target="s-kick-erw" role="tab" aria-selected="false">Erwachsene</button>
+            </div>
           </div>
         <div class="filter-panel active" id="s-kick-kids">
           <article class="sport__card">

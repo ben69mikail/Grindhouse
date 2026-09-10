@@ -290,8 +290,28 @@ p { text-wrap: pretty; }
 
 /* ---------- Sport tabs (Finde deinen Sport) ---------- */
 .sport__tabs { margin-bottom: 28px; }
-.filter-tabs--sub { justify-content: flex-start; gap: 8px; margin-bottom: 22px; }
+.filter-tab__count {
+  display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; margin-left: 6px;
+  border-radius: var(--pill); background: rgba(255, 255, 255, 0.14); color: var(--white);
+  font-size: 0.7rem; font-style: normal; letter-spacing: 0; vertical-align: 1px;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease);
+}
+.filter-tab.active .filter-tab__count { background: #fff; color: var(--red); }
+/* Kickboxen panel: its four groups live inside one framed box, read as "Kickboxen für Kids / Teens / …" */
+.filter-panel--kick {
+  border: 1px solid rgba(201, 24, 31, 0.4); border-radius: var(--radius); padding: 22px 28px 12px;
+  background: linear-gradient(180deg, rgba(201, 24, 31, 0.08), transparent 45%), rgba(255, 255, 255, 0.02);
+}
+.subnav { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 18px; }
+.subnav__label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-style: italic; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; font-size: 0.9rem; color: var(--white);
+}
+.subnav__label::before { content: ""; width: 22px; height: 2px; background: var(--red-bright); }
+.subnav .filter-tabs--sub { justify-content: flex-start; gap: 8px; margin-bottom: 0; }
 .filter-tabs--sub .filter-tab { padding: 8px 16px; font-size: 0.78rem; }
+.filter-panel--kick .sport__card { margin-top: 22px; border-top: 1px solid rgba(201, 24, 31, 0.25); padding-bottom: 16px; }
 .sport__card {
   display: grid; grid-template-columns: 1fr 1.15fr; gap: 44px; align-items: center;
   padding: 36px 0 8px; border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -739,7 +759,10 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
   .hero__finder { padding: 22px; }
   .sport__card { grid-template-columns: 1fr; gap: 24px; padding-top: 24px; }
   .sport__media { order: -1; }
-  .filter-tabs--sub { justify-content: center; }
+  .filter-panel--kick { padding: 18px 16px 8px; }
+  .subnav { justify-content: center; }
+  .subnav__label { width: 100%; justify-content: center; }
+  .subnav .filter-tabs--sub { justify-content: center; }
   .values { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
   .values-section::before { background-image: linear-gradient(180deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.72) 45%, rgba(10,10,10,0.94) 100%), url("img/werte-bg-1080.webp"); }
