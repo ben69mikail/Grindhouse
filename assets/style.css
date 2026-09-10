@@ -352,10 +352,32 @@ p { text-wrap: pretty; }
 /* ---------- Course filter ---------- */
 .filter-tabs { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 36px; }
 .filter-tab {
+  position: relative; overflow: hidden;
   font-family: var(--font-display); font-style: italic; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.06em; font-size: 0.86rem; padding: 11px 24px; border-radius: var(--pill);
   background: var(--gray-800); color: var(--ink-2); border: 1px solid rgba(255, 255, 255, 0.16); cursor: pointer;
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease), background 0.25s var(--ease), transform 0.18s var(--ease-expo);
+}
+/* idle hint: a thin red light beam sweeps the bottom edge of every tab that is NOT selected.
+   Tabs take turns (delay = index * quarter cycle), so only one beam moves at a time. */
+.filter-tab::before {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 50%; height: 1px; opacity: 0;
+  background: linear-gradient(90deg, transparent, var(--red-bright-hover) 50%, transparent);
+  box-shadow: 0 0 8px 1px var(--red-glow);
+  transform: translateX(-100%);
+  animation: tab-beam 4.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  pointer-events: none;
+}
+.filter-tab:nth-child(2)::before { animation-delay: 1.05s; }
+.filter-tab:nth-child(3)::before { animation-delay: 2.1s; }
+.filter-tab:nth-child(4)::before { animation-delay: 3.15s; }
+.filter-tab.active::before { animation: none; }
+@keyframes tab-beam {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  6%   { opacity: 1; }
+  44%  { opacity: 1; }
+  50%  { transform: translateX(200%); opacity: 0; }
+  100% { transform: translateX(200%); opacity: 0; }
 }
 .filter-tab:hover { color: var(--white); border-color: var(--gray-300); background: var(--gray-700); }
 .filter-tab:active { transform: scale(0.96); }
@@ -363,6 +385,13 @@ p { text-wrap: pretty; }
 .filter-tab.active {
   background: var(--red-bright); color: #fff; border-color: rgba(255,255,255,0.22);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 8px 22px -10px var(--red-glow);
+}
+/* click feedback: settle from the press, ring flashes out (class set by app.js, removed on animationend) */
+.filter-tab.pop { animation: tab-pop 0.32s var(--ease-expo); }
+@keyframes tab-pop {
+  0%   { transform: scale(0.96); box-shadow: 0 0 0 0 rgba(201, 24, 31, 0.55); }
+  45%  { transform: scale(1.05); }
+  100% { transform: scale(1); box-shadow: 0 0 0 10px rgba(201, 24, 31, 0); }
 }
 .filter-panel { display: none; }
 .filter-panel.active { display: block; }

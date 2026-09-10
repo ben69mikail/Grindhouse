@@ -70,6 +70,12 @@
       tab.setAttribute("aria-selected", "true");
       var panel = document.getElementById(target);
       if (panel) panel.classList.add("active");
+      tab.classList.remove("pop");
+      void tab.offsetWidth; // restart the animation on rapid re-clicks
+      tab.classList.add("pop");
+    });
+    tab.addEventListener("animationend", function (ev) {
+      if (ev.animationName === "tab-pop") tab.classList.remove("pop");
     });
   });
 

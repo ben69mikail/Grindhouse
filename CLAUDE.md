@@ -46,7 +46,7 @@ Alle HTML-Seiten laden `assets/style.css` + `assets/app.js` (defer) + `assets/co
 ```
 Buttons: `.btn .btn--primary` (rot, Kantenlicht, Hover-Sheen), `.btn--ghost` (Rahmen, invertiert auf Hover), `.btn--whatsapp`, `.btn--block`.
 Reveal: Element bekommt Klasse `reveal`, JS setzt `in` beim Sichtbarwerden. Stagger via `nth-child`-Delays.
-Motion-Bausteine: Hero-Foto liegt auf `.hero::after` (Ken-Burns `hero-zoom` 18s; im `@supports (animation-timeline)`-Block zusätzlich Scroll-Drift + `hero-out` für `.hero__grid` ab 1101px). Split-Bilder wischen per `clip-path` ein, Offer-Card-Fotos setzen sich aus scale(1.12), Value-Icons poppen nach der Karte, Drawer-Links kaskadieren, IG-Cards `rise`. Alles im Reduced-Motion-Block zurückgesetzt.
+Motion-Bausteine: Hero-Foto liegt auf `.hero::after` (Ken-Burns `hero-zoom` 18s; im `@supports (animation-timeline)`-Block zusätzlich Scroll-Drift + `hero-out` für `.hero__grid` ab 1101px). Split-Bilder wischen per `clip-path` ein, Offer-Card-Fotos setzen sich aus scale(1.12), Value-Icons poppen nach der Karte, Drawer-Links kaskadieren, IG-Cards `rise`. Kursfinder-Tabs: inaktive Tabs tragen einen 1px-Lichtstrahl (`.filter-tab::before`, `tab-beam` 4,2s, per `nth-child` versetzt), Klick setzt `pop` (`tab-pop`, app.js entfernt bei `animationend`). Alles im Reduced-Motion-Block zurückgesetzt.
 
 ## DSGVO / Consent
 - localStorage-Key `gh-consent-v1` = `{ necessary:true, fonts:bool, maps:bool, ts }`
