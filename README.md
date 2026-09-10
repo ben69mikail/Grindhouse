@@ -4,7 +4,7 @@ Statische, moderne Neufassung von grindhousemartialarts.de.
 Reines HTML/CSS/JS, kein Build nötig. Lokal öffnen: `index.html` im Browser.
 
 ## Dateien
-- `index.html` — Startseite (Hero, Angebot, Warum, Werte, Kursfilter, Trainingsplan, Fotogalerie, Kontakt, Footer)
+- `index.html` — Startseite (Hero, Angebot als Reiter, Warum, Werte, Kursfilter, Trainingsplan, Fotogalerie, Kontakt, Footer)
 - `anmeldeformular.html` — Online-Anmeldung mit DSGVO-Checkbox → leitet zu `bestaetigung.html`
 - `bestaetigung.html` — Erfolgsseite
 - `impressum.html` / `datenschutz.html` — Rechtstexte (echte Firmendaten)

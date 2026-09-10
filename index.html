@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grindhouse Martial Arts – Kampfsport in Dinslaken</title>
-  <meta name="description" content="Premium Kampfsportunterricht für Kinder ab 5 Jahren, Jugendliche und Erwachsene in Dinslaken. Kickboxen, Yoga, Fitness und mentale Stärke. Kostenlose Probeeinheit!" />
+  <meta name="description" content="Premium Kampfsportunterricht für Kinder ab 5 Jahren, Jugendliche und Erwachsene in Dinslaken. Kickboxen, FitKids, Mini Turnen, Zirkeltraining und mentale Stärke. Kostenlose Probeeinheit!" />
   <meta property="og:title" content="Grindhouse Martial Arts" />
   <meta property="og:description" content="Premium Kampfsportunterricht für Alle in Dinslaken. Kostenlos Probeschnuppern!" />
   <meta property="og:image" content="https://www.grindhousemartialarts.de/wp-content/uploads/2023/02/Logo-Website.png" />
@@ -37,7 +37,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
         </a>
       </div>
-      <a class="btn btn--ghost" href="anmeldeformular.html">Anmeldeformular</a>
+      <a class="btn btn--ghost" href="anmeldeformular.html">Jetzt anmelden</a>
       <a class="btn btn--primary" href="#kontakt">Termin vereinbaren</a>
       <button class="nav__burger" aria-label="Menü öffnen" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -51,7 +51,7 @@
     <a href="#ueber-uns">Über uns</a>
     <a href="#trainingsplan">Trainingspläne</a>
     <a href="#kontakt">Kontakt</a>
-    <a class="btn btn--primary" href="anmeldeformular.html">Anmeldeformular</a>
+    <a class="btn btn--primary" href="anmeldeformular.html">Jetzt anmelden</a>
     <div class="drawer__socials">
       <a class="social-btn ig" href="https://www.instagram.com/grindhouse_martial_arts/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
       <a class="social-btn fb" href="https://www.facebook.com/grindhousemartialarts/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a>
@@ -134,31 +134,107 @@
       <div class="section__head reveal">
         <span class="eyebrow">Unser Angebot</span>
         <h2>Finde deinen Sport</h2>
-        <p>Zwei Wege zu mehr Stärke, Fokus und Wohlbefinden – für Kinder, Jugendliche und Erwachsene.</p>
+        <p>Vier Wege zu mehr Stärke, Fokus und Wohlbefinden – für Kinder, Jugendliche und Erwachsene.</p>
       </div>
-      <div class="offer-grid">
-        <article class="offer-card reveal">
-          <img class="offer-card__img" src="https://www.grindhousemartialarts.de/wp-content/uploads/2024/10/Grindhouse-26-scaled.jpg" alt="Kickboxen-Training bei Grindhouse Martial Arts" loading="lazy" />
-          <div class="offer-card__body">
-            <span class="offer-card__tag">ab 5 Jahren</span>
-            <h3>Kickboxen</h3>
-            <p>Von den ersten Tritten und Schlägen bis zur Meisterschaft – Kickboxen lehrt Disziplin, Fokus und Ausdauer. Spielerisch und strukturiert lernst du, deine Grenzen zu entdecken und zu überwinden.</p>
-            <a class="link" href="#kontakt">Jetzt kennenlernen
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
+      <div class="sport reveal">
+        <div class="filter-tabs sport__tabs" role="tablist" aria-label="Sportarten">
+          <button class="filter-tab active" data-target="s-kick" role="tab" aria-selected="true">Kickboxen</button>
+          <button class="filter-tab" data-target="s-fitkids" role="tab" aria-selected="false">FitKids</button>
+          <button class="filter-tab" data-target="s-mini" role="tab" aria-selected="false">Mini Turnen</button>
+          <button class="filter-tab" data-target="s-zirkel" role="tab" aria-selected="false">Zirkeltraining</button>
+        </div>
+        <div class="filter-panel active" id="s-kick">
+          <div class="filter-tabs filter-tabs--sub" role="tablist" aria-label="Kickboxen-Gruppen">
+            <button class="filter-tab active" data-target="s-kick-kids" role="tab" aria-selected="true">Kids</button>
+            <button class="filter-tab" data-target="s-kick-teens" role="tab" aria-selected="false">Teens</button>
+            <button class="filter-tab" data-target="s-kick-frauen" role="tab" aria-selected="false">Frauen</button>
+            <button class="filter-tab" data-target="s-kick-erw" role="tab" aria-selected="false">Erwachsene</button>
           </div>
-        </article>
-        <article class="offer-card reveal">
-          <img class="offer-card__img" src="https://www.grindhousemartialarts.de/wp-content/uploads/2024/11/PHOTO-2024-11-13-10-51-04.jpg" alt="Yoga-Training bei Grindhouse Martial Arts" loading="lazy" />
-          <div class="offer-card__body">
-            <span class="offer-card__tag">ab 7 Jahren</span>
-            <h3>Yoga</h3>
-            <p>Yoga fördert körperliche Flexibilität und Stärke und bringt innere Ruhe und Gelassenheit. Für Kinder bieten wir ein Programm, das Achtsamkeit und Ausgeglichenheit von klein auf unterstützt – die perfekte Ergänzung zu unserem dynamischen Kampfsport.</p>
-            <a class="link" href="#kontakt">Jetzt kennenlernen
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </article>
+        <div class="filter-panel active" id="s-kick-kids">
+          <article class="sport__card">
+            <div class="sport__body">
+              <span class="sport__tag">5 bis 12 Jahre</span>
+              <h3>Kickboxen Kids</h3>
+              <ul class="sport__meta"><li>Mo &amp; Mi · 16:00–16:45 · ab 5 Jahren</li><li>Mo &amp; Mi · 17:00–18:00 · ab 8 Jahren</li></ul>
+              <p>Spielerisch lernen Kinder die Grundtechniken des Kickboxens: Stand, Deckung, Schlag und Tritt an Pratzen und Boxsack. Dazu Koordination, Reaktion und Beweglichkeit.</p><p>Genauso wichtig: Respekt, Regeln und das gute Gefühl, sich behaupten zu können. Kein Kontakt zum Kopf, altersgerechte Gruppen, feste Trainer.</p>
+              <a class="btn btn--primary" href="#kontakt">Probetraining vereinbaren</a>
+            </div>
+            <div class="sport__media"><img src="assets/img/sport-kick-kids.webp" width="1200" height="900" alt="Zwei Kinder beim Kickboxen-Partnertraining" loading="lazy" /></div>
+          </article>
+        </div>
+        <div class="filter-panel" id="s-kick-teens">
+          <article class="sport__card">
+            <div class="sport__body">
+              <span class="sport__tag">12 bis 16 Jahre</span>
+              <h3>Kickboxen Teens</h3>
+              <ul class="sport__meta"><li>Mo &amp; Mi · 18:00–19:00</li><li>Fr · 17:00–18:00 · Kids &amp; Teens Pro Class</li></ul>
+              <p>Technik wird präziser, das Training intensiver: Kombinationen, Beinarbeit, Pratzenarbeit und erste kontrollierte Sparring-Runden mit Schutzausrüstung.</p><p>Die Pro Class am Freitag ist für alle, die mehr wollen: Wettkampfvorbereitung, Kondition und Taktik in kleiner Gruppe.</p>
+              <a class="btn btn--primary" href="#kontakt">Probetraining vereinbaren</a>
+            </div>
+            <div class="sport__media"><img src="assets/img/sport-kick-teens.webp" width="1200" height="900" alt="Jugendlicher tritt beim Kickboxen gegen eine Pratze" loading="lazy" /></div>
+          </article>
+        </div>
+        <div class="filter-panel" id="s-kick-frauen">
+          <article class="sport__card">
+            <div class="sport__body">
+              <span class="sport__tag">Nur für Frauen</span>
+              <h3>Frauen Kickboxen</h3>
+              <ul class="sport__meta"><li>Di · 18:00–19:00</li></ul>
+              <p>Kickboxen unter Frauen: Technik, Kraft und Ausdauer in einer Gruppe, in der sich jede wohlfühlt. Vom ersten Schlag bis zur sauberen Kombination, ohne Leistungsdruck.</p><p>Selbstverteidigung ist Teil jeder Einheit: klare Grenzen setzen, Distanz halten, sicher reagieren.</p>
+              <a class="btn btn--primary" href="#kontakt">Probetraining vereinbaren</a>
+            </div>
+            <div class="sport__media"><img src="assets/img/sport-kick-frauen.webp" width="1200" height="900" alt="Frau schlägt mit Boxhandschuhen auf einen Boxsack" loading="lazy" /></div>
+          </article>
+        </div>
+        <div class="filter-panel" id="s-kick-erw">
+          <article class="sport__card">
+            <div class="sport__body">
+              <span class="sport__tag">Ab 16 Jahren</span>
+              <h3>Kickboxen Erwachsene</h3>
+              <ul class="sport__meta"><li>Mo &amp; Mi · 19:00–20:30</li><li>Fr · 18:15–19:15 · Sparring</li></ul>
+              <p>Für Einsteiger und Erfahrene: Technikarbeit, Pratzen, Boxsack und Konditionsblöcke, die dich an deine Grenze bringen. Jede Einheit hat Struktur, jeder trainiert auf seinem Level.</p><p>Sparring am Freitag ist freiwillig, kontrolliert und mit Schutzausrüstung. Wer Wettkampf will, wird gezielt vorbereitet.</p>
+              <a class="btn btn--primary" href="#kontakt">Probetraining vereinbaren</a>
+            </div>
+            <div class="sport__media"><img src="assets/img/sport-kick-erwachsene.webp" width="1200" height="900" alt="Zwei Erwachsene beim Kickboxen-Sparring" loading="lazy" /></div>
+          </article>
+        </div>
+        </div>
+        <div class="filter-panel" id="s-fitkids">
+          <article class="sport__card">
+            <div class="sport__body">
+              <span class="sport__tag">5 bis 12 Jahre</span>
+              <h3>FitKids Gymnastics</h3>
+              <ul class="sport__meta"><li>Di &amp; Do · 16:15–17:15</li></ul>
+              <p>Bewegung, die Spaß macht: Laufen, Springen, Rollen, Balancieren und erste Turnelemente. FitKids schult Koordination, Kraft und Körpergefühl, ganz ohne Kampfsport.</p><p>Die ideale Basis für jede Sportart und die perfekte Ergänzung zum Kickboxen. Kleine Gruppen, klare Abläufe, viel Lob.</p>
+              <a class="btn btn--primary" href="#kontakt">Probetraining vereinbaren</a>
+            </div>
+            <div class="sport__media"><img src="assets/img/sport-fitkids.webp" width="1200" height="900" alt="Zwei Kinder trainieren mit einem Widerstandsband" loading="lazy" /></div>
+          </article>
+        </div>
+        <div class="filter-panel" id="s-mini">
+          <article class="sport__card">
+            <div class="sport__body">
+              <span class="sport__tag">Ab 1,5 Jahren</span>
+              <h3>Mini Turnen</h3>
+              <ul class="sport__meta"><li>Fr · 15:45–16:45</li></ul>
+              <p>Klettern, krabbeln, hüpfen, balancieren: Beim Mini Turnen entdecken die Kleinsten ihren Körper und die Matte, gemeinsam mit Mama oder Papa.</p><p>Spielerische Parcours fördern Motorik, Gleichgewicht und Mut. Und ganz nebenbei lernen die Kinder, in der Gruppe zu warten, zu teilen und zuzuhören.</p>
+              <a class="btn btn--primary" href="#kontakt">Probetraining vereinbaren</a>
+            </div>
+            <div class="sport__media"><img src="assets/img/sport-miniturnen.webp" width="1200" height="900" alt="Kinder machen gemeinsam Bodenübungen in der Trainingshalle" loading="lazy" /></div>
+          </article>
+        </div>
+        <div class="filter-panel" id="s-zirkel">
+          <article class="sport__card">
+            <div class="sport__body">
+              <span class="sport__tag">Erwachsene</span>
+              <h3>Zirkeltraining</h3>
+              <ul class="sport__meta"><li>Di &amp; Do · 10:00–11:00</li></ul>
+              <p>Kraft und Ausdauer im Stationsbetrieb: Boxsack, Kettlebell, Körpergewicht, Sprints. Eine Stunde, die dich fordert und den Kopf frei macht.</p><p>Jede Station lässt sich anpassen, vom Wiedereinstieg bis zum Leistungsniveau. Vormittags, in kleiner Runde, mit Trainer an deiner Seite.</p>
+              <a class="btn btn--primary" href="#kontakt">Probetraining vereinbaren</a>
+            </div>
+            <div class="sport__media"><img src="assets/img/sport-zirkel.webp" width="1200" height="900" alt="Erwachsene trainieren an Boxsäcken im Studio" loading="lazy" /></div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
@@ -422,7 +498,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="course">Dein Wunschkurs <span class="req">*</span></label>
+            <label for="course">Dein Kurs <span class="req">*</span></label>
             <select class="form-control" id="course" name="course" required>
               <option value="">– Bitte auswählen –</option>
               <option>Kinder ab 5 Jahren</option>

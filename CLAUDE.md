@@ -13,20 +13,20 @@ Reines HTML/CSS/JS. Kein Build, kein Framework, kein npm.
 ## Dateien
 | Datei | Zweck |
 |---|---|
-| `index.html` | Startseite: Nav, Hero + Kursfinder, Angebot, Reviews, Über uns, Werte (Foto-Hintergrund), Trainingsplan (Tabelle + Mobile-Accordion, Heute-Markierung), Fotogalerie 3×2, Kontakt + Formular, Footer |
+| `index.html` | Startseite: Nav, Hero + Kursfinder, Angebot als Reiter (Kickboxen mit Unter-Reitern Kids/Teens/Frauen/Erwachsene, FitKids, Mini Turnen, Zirkeltraining), Reviews, Über uns, Werte (Foto-Hintergrund), Trainingsplan (Tabelle + Mobile-Accordion, Heute-Markierung), Fotogalerie 3×2, Kontakt + Formular, Footer |
 | `anmeldeformular.html` | Online-Anmeldung mit DSGVO-Checkbox → Redirect `bestaetigung.html` |
 | `bestaetigung.html` | Erfolgsseite |
 | `impressum.html`, `datenschutz.html` | Rechtstexte, echte Firmendaten |
 | `assets/style.css` | Design-System + alle Komponenten (~680 Zeilen) |
-| `assets/app.js` | Nav-Scroll, Scroll-Progress-Bar, Mobile-Drawer, Kursfilter-Tabs, Reveal (IntersectionObserver), Formular-Stub, Footer-Jahr |
+| `assets/app.js` | Nav-Scroll, Scroll-Progress-Bar, Mobile-Drawer, Filter-Tabs (pro `.filter-tabs`-Gruppe gescoped, verschachtelbar), Reveal (IntersectionObserver), Formular-Stub, Footer-Jahr |
 | `assets/consent.js` | DSGVO-Consent-Banner |
-| `assets/img/` | Optimierte WebP-Fotos: `galerie-01..06` (900×900), `werte-bg-1920/1080`. Originale in `Fotos/` (gitignored, ~300 MB). Neue Fotos: PIL-Resize auf diese Maße, nie Originale committen |
+| `assets/img/` | Optimierte WebP-Fotos: `galerie-01..06` (900×900), `sport-*` (1200×900, Reiter-Sektion), `werte-bg-1920/1080`. Originale in `Fotos/` (gitignored, ~300 MB). Neue Fotos: PIL-Resize auf diese Maße, nie Originale committen |
 | `netlify.toml` | `publish = "."`, Redirects `/impressum` etc., Security-Header |
 
 Alle HTML-Seiten laden `assets/style.css` + `assets/app.js` (defer) + `assets/consent.js`. Kein Instagram-Feed mehr (Galerie statt Feed), keine Partner-Sektion mehr.
 
 ## Harte Regeln
-- **Krav Maga NIE erwähnen** (Kurse, Partner, Texte). User-Vorgabe.
+- **Krav Maga NIE erwähnen** (Kurse, Partner, Texte). User-Vorgabe. **Yoga gibt es nicht mehr** (Sektion + Formular-Option entfernt 2026-09-10).
 - Design-System beibehalten: Bordeaux, Oswald kursiv (Display), Open Sans (Body), Dark Theme. Keine neuen Fonts/Farben ohne Anweisung.
 - Nur Homepage weiterführen. Keine Member-App, kein Next.js (alter Ansatz verworfen).
 - Logo + ältere Fotos bleiben Original-URLs von grindhousemartialarts.de; neue Fotos aus `Fotos/` optimiert nach `assets/img/`.

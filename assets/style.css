@@ -288,40 +288,35 @@ p { text-wrap: pretty; }
 }
 @keyframes scroll { 0% { opacity: 0; top: 7px; } 40% { opacity: 1; } 80% { opacity: 0; top: 18px; } 100% { opacity: 0; } }
 
-/* ---------- Offer cards ---------- */
-.offer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
-.offer-card {
-  position: relative; border-radius: var(--radius); overflow: hidden;
-  background: var(--gray-850); box-shadow: var(--shadow-card);
-  min-height: 440px; display: flex; flex-direction: column; justify-content: flex-end;
-  isolation: isolate;
-  transition: transform 0.4s var(--ease-expo), box-shadow 0.4s var(--ease-expo);
+/* ---------- Sport tabs (Finde deinen Sport) ---------- */
+.sport__tabs { margin-bottom: 28px; }
+.filter-tabs--sub { justify-content: flex-start; gap: 8px; margin-bottom: 22px; }
+.filter-tabs--sub .filter-tab { padding: 8px 16px; font-size: 0.78rem; }
+.sport__card {
+  display: grid; grid-template-columns: 1fr 1.15fr; gap: 44px; align-items: center;
+  padding: 36px 0 8px; border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
-.offer-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -24px rgba(0,0,0,0.8), 0 0 0 1px rgba(150,19,24,0.4); }
-.offer-card__img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  z-index: -2; transition: transform 0.7s var(--ease);
-}
-.offer-card::before {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0.95) 100%);
-}
-.offer-card:hover .offer-card__img { transform: scale(1.06); }
-.offer-card__body { padding: 32px; }
-.offer-card__tag {
+.sport__tag {
   display: inline-block; font-family: var(--font-display); font-style: italic; font-weight: 600;
   text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.7rem;
-  background: var(--red); color: #fff; padding: 5px 14px; border-radius: var(--pill); margin-bottom: 14px;
+  background: var(--red); color: #fff; padding: 5px 14px; border-radius: var(--pill); margin-bottom: 16px;
 }
-.offer-card h3 { font-size: 1.7rem; margin-bottom: 12px; }
-.offer-card p { color: var(--gray-300); font-size: 0.96rem; margin-bottom: 20px; }
-.offer-card a.link {
-  font-family: var(--font-display); font-style: italic; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.08em; font-size: 0.86rem; color: var(--white); display: inline-flex; align-items: center; gap: 8px;
+.sport__body h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 14px; }
+.sport__meta { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.sport__meta li {
+  font-size: 0.84rem; font-weight: 600; color: var(--cream); font-variant-numeric: tabular-nums;
+  padding: 6px 12px; border-radius: 8px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.12);
 }
-.offer-card a.link svg { transition: transform 0.25s var(--ease); }
-.offer-card a.link:hover { color: var(--red); }
-.offer-card a.link:hover svg { transform: translateX(5px); }
+.sport__body p { color: var(--gray-300); font-size: 0.98rem; margin-bottom: 14px; max-width: 52ch; }
+.sport__body .btn { margin-top: 10px; }
+.sport__media { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); aspect-ratio: 4 / 3; }
+.sport__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* switching tabs: copy rises in a cascade, photo settles from a push-in */
+.filter-panel.active .sport__body > * { animation: rise 0.5s var(--ease-expo) both; animation-delay: calc(var(--i, 0) * 60ms); }
+.sport__body > :nth-child(2) { --i: 1; } .sport__body > :nth-child(3) { --i: 2; } .sport__body > :nth-child(4) { --i: 3; }
+.sport__body > :nth-child(5) { --i: 4; } .sport__body > :nth-child(6) { --i: 5; }
+.filter-panel.active .sport__media img { animation: sport-in 0.9s var(--ease-expo) both; }
+@keyframes sport-in { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: none; } }
 
 /* ---------- Why / About split ---------- */
 .split { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
@@ -543,12 +538,8 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
 }
 .reveal.in { opacity: 1; transform: translateY(0); filter: blur(0); }
 /* gentle stagger when several reveals sit in one row/grid */
-.offer-grid .reveal:nth-child(2), .values .reveal:nth-child(2), .reviews-grid .reveal:nth-child(2) { transition-delay: 0.1s; }
+.values .reveal:nth-child(2), .reviews-grid .reveal:nth-child(2) { transition-delay: 0.1s; }
 .values .reveal:nth-child(3), .reviews-grid .reveal:nth-child(3) { transition-delay: 0.2s; }
-/* offer cards: photo settles from a push-in as the card reveals */
-.offer-card.reveal .offer-card__img { transform: scale(1.12); }
-.offer-card.reveal.in .offer-card__img { transform: scale(1); transition: transform 1.3s var(--ease-expo); }
-.offer-card.reveal.in:hover .offer-card__img { transform: scale(1.06); transition-duration: 0.7s; }
 /* value cards: icon pops in after its card */
 .value-card.reveal .value-card__icon { opacity: 0; transform: scale(0.6); }
 .value-card.reveal.in .value-card__icon {
@@ -746,7 +737,9 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
   .section { padding: 72px 0; }
   .hero { min-height: auto; padding: 110px 0 64px; }
   .hero__finder { padding: 22px; }
-  .offer-grid { grid-template-columns: 1fr; }
+  .sport__card { grid-template-columns: 1fr; gap: 24px; padding-top: 24px; }
+  .sport__media { order: -1; }
+  .filter-tabs--sub { justify-content: center; }
   .values { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
   .values-section::before { background-image: linear-gradient(180deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.72) 45%, rgba(10,10,10,0.94) 100%), url("img/werte-bg-1080.webp"); }
@@ -758,7 +751,7 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto; }
   .reveal, .split.reveal .split__media, .split.reveal .split__body, .split.reveal .split__media img,
-  .offer-card.reveal .offer-card__img, .value-card.reveal .value-card__icon,
+  .value-card.reveal .value-card__icon,
   .drawer > a, .drawer > .drawer__socials,
   .plan-wrap.reveal table.plan tbody tr, .gallery.reveal .gallery__item { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
   .hero::after, .hero__grid, .values-section::before { scale: 1; translate: none; opacity: 1; }

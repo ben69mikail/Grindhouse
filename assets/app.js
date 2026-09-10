@@ -58,24 +58,27 @@
     });
   }
 
-  /* ---- Course filter tabs ---- */
-  var tabs = document.querySelectorAll(".filter-tab");
-  var panels = document.querySelectorAll(".filter-panel");
-  tabs.forEach(function (tab) {
-    tab.addEventListener("click", function () {
-      var target = tab.getAttribute("data-target");
-      tabs.forEach(function (t) { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
-      panels.forEach(function (p) { p.classList.remove("active"); });
-      tab.classList.add("active");
-      tab.setAttribute("aria-selected", "true");
-      var panel = document.getElementById(target);
-      if (panel) panel.classList.add("active");
-      tab.classList.remove("pop");
-      void tab.offsetWidth; // restart the animation on rapid re-clicks
-      tab.classList.add("pop");
-    });
-    tab.addEventListener("animationend", function (ev) {
-      if (ev.animationName === "tab-pop") tab.classList.remove("pop");
+  /* ---- Filter tabs: each .filter-tabs group only switches its own panels (data-target = panel id) ---- */
+  document.querySelectorAll(".filter-tabs").forEach(function (list) {
+    var tabs = list.querySelectorAll(":scope > .filter-tab");
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        tabs.forEach(function (t) {
+          t.classList.remove("active"); t.setAttribute("aria-selected", "false");
+          var p = document.getElementById(t.getAttribute("data-target"));
+          if (p) p.classList.remove("active");
+        });
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+        var panel = document.getElementById(tab.getAttribute("data-target"));
+        if (panel) panel.classList.add("active");
+        tab.classList.remove("pop");
+        void tab.offsetWidth; // restart the animation on rapid re-clicks
+        tab.classList.add("pop");
+      });
+      tab.addEventListener("animationend", function (ev) {
+        if (ev.animationName === "tab-pop") tab.classList.remove("pop");
+      });
     });
   });
 
